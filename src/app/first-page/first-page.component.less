@@ -1,0 +1,47 @@
+ @import '../app.component.less';
+ 
+ img.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    min-height: 100%;
+    min-width: 640px;
+    width: 100%;
+    height: auto;
+
+    @media screen and (max-width: 640px){
+      img.bg {
+        left: 50%;
+
+        margin-left: -320px;
+      }
+    }
+  }
+
+  .body {
+    z-index: 10;
+    position:absolute;
+    top:25%;
+    left:40%;
+
+    color: @gradientWhite;
+
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+
+    .buttonGroups {
+        display: flex;
+        justify-content: space-around;
+
+        .secondPage, .thirdPage {
+            #button;
+        }
+    }
+  }
+
+  .secondPage:active, .secondPage:focus, .thirdPage:active, .thirdPage:focus   { 
+    outline: none !important;
+   }

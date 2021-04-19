@@ -1,0 +1,55 @@
+<div class="thirdPage-container">
+    <div class="header">
+        <img src="./assets/headerfooter.jpg"  class="headerImage" />
+    </div>
+    <form 
+        class="thirdPage-form"
+        [formGroup]="thirdPageForm"
+    >
+        <div class="thirdPage-content">
+            <div >
+                <label  class="titleLabel" for=male>Male: </label>
+                <select
+                    class="input"
+                    formControlName="male"
+                    [(ngModel)]="male"
+                >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+              </select>
+            </div>
+            <div>
+                <label  class="titleLabel" for=children>Have children: </label>
+                <input 
+                    class="input"
+                    formControlName="children"
+                    [(ngModel)]="children"
+                    id="children" 
+                    type="checkbox" 
+                >
+            </div>
+            <div>
+                <label class="titleLabel" for=job>Got a job: </label>
+                <input 
+                    class="input"
+                    formControlName="job"
+                    [(ngModel)]="job"
+                    id="job" 
+                    type="checkbox"  
+                >
+            </div>
+            <div class="action">
+                <button 
+                    type="submit"
+                    class="buttonThirdPage"
+                    (click)="addPersonalInfoMore()"
+                >
+                        Add
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="footer">
+            <img src="./assets/headerfooter.jpg"  class="footerImage" />
+    </div>
+</div>

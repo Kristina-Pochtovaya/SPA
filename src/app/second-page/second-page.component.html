@@ -1,0 +1,77 @@
+<div class="secondPage-container">
+    <div class="header">
+        <img src="./assets/headerfooter.jpg"  class="headerImage" />
+    </div>
+    <form 
+        class="secondPage-form"
+        [formGroup]="secondPageForm"
+    >
+        <div class="secondPage-content">
+            <div >
+                <label  class="titleLabel" for=firstName>First name: </label>
+                <input 
+                    class="input"
+                    formControlName="firstName"
+                    [(ngModel)]="firstName"
+                    id="firstName" 
+                    type="text" 
+                >
+            </div>
+            <div>
+                <label  class="titleLabel" for=lastName>Last name: </label>
+                <input 
+                    class="input"
+                    formControlName="lastName"
+                    [(ngModel)]="lastName"
+                    id="lastName" 
+                    type="text" 
+                >
+            </div>
+            <div>
+                <label class="titleLabel" for=ages>Ages: </label>
+                <input 
+                    class="input"
+                    formControlName="ages"
+                    [(ngModel)]="myAges"
+                    id="ages" 
+                    type="text" 
+                >
+                <div class="agesError" *ngIf="ages.touched && ages.invalid">
+                    <div *ngIf="ages.errors.cannotContainCharacters">Ages cannot contain characters</div>
+                </div>
+            </div>
+            <div>
+                <label class="titleLabel" for=email>E-mail: </label>
+                <input 
+                    class="input"    
+                    formControlName="email"
+                    [(ngModel)]="email"
+                    id="email" 
+                    type="email" 
+                >
+            </div>
+            <div>
+                <label class="titleLabel" for=password>Password: </label>
+                <input 
+                    class="input"
+                    formControlName="password"
+                    [(ngModel)]="password"
+                    id="password" 
+                    type="password" 
+                >
+            </div>
+            <div class="action">
+                <button 
+                    type="submit"
+                    class="buttonSecondPage"
+                    (click)="addPersonalInfo()"
+                >
+                        Add
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="footer">
+            <img src="./assets/headerfooter.jpg"  class="footerImage" />
+    </div>
+</div>
