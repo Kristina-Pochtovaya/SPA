@@ -37,16 +37,9 @@ export class SecondPageComponent implements OnInit {
   }
 
   addPersonalInfo(): void {
-    this.users.push(new User(this.firstName, this.lastName, this.myAges, this.email, this.password))
-    this.clearInfo();
+    this.users.push(new User(this.secondPageForm.value.firstName, this.secondPageForm.value.lastName, 
+      this.secondPageForm.value.ages, this.secondPageForm.value.email, this.secondPageForm.value.password))
+    this.secondPageForm.reset();
     console.log(this.users); 
   }
-  clearInfo(): void {
-    this.firstName = null;
-    this.lastName = null;
-    this.myAges = null;
-    this.email = null;
-    this.password = null;
-  }
-
 }

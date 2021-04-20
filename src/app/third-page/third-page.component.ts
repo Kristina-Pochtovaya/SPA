@@ -10,9 +10,6 @@ import { UserMore } from './userMore.model';
 export class ThirdPageComponent implements OnInit {
 
   thirdPageForm: FormGroup;
-  male: string = 'Male';
-  children: boolean = false;
-  job: boolean = false;
 
   usersMore: UserMore[] = [];
 
@@ -21,21 +18,20 @@ export class ThirdPageComponent implements OnInit {
   ngOnInit() {
     console.log(this.usersMore);
     this.thirdPageForm = new FormGroup({
-      male: new FormControl(null),
+      male: new FormControl('Male'),
       children: new FormControl(false),
       job: new FormControl(false)
     });
   }
 
   addPersonalInfoMore(): void {
-    this.usersMore.push(new UserMore(this.male, this.children, this.job))
-    this.clearInfo();
+    this.usersMore.push(new UserMore(this.thirdPageForm.value.male, this.thirdPageForm.value.children, this.thirdPageForm.value.job))
+    this.thirdPageForm.reset();
+    this.thirdPageForm = new FormGroup({
+      male: new FormControl('Male'),
+      children: new FormControl(false),
+      job: new FormControl(false)
+    });
     console.log(this.usersMore); 
   }
-  clearInfo(): void {
-    this.male = 'Male';
-    this.children = false;
-    this.job = false;
-  }
-
 }

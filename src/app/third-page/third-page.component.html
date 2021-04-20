@@ -12,7 +12,6 @@
                 <select
                     class="input"
                     formControlName="male"
-                    [(ngModel)]="male"
                 >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -23,7 +22,6 @@
                 <input 
                     class="input"
                     formControlName="children"
-                    [(ngModel)]="children"
                     id="children" 
                     type="checkbox" 
                 >
@@ -33,9 +31,10 @@
                 <input 
                     class="input"
                     formControlName="job"
-                    [(ngModel)]="job"
                     id="job" 
+                    ngDefaultControl
                     type="checkbox"  
+                    value=false
                 >
             </div>
             <div class="action">
