@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-input-user',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   styleUrls: ['./input-user.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputUserComponent implements OnInit {
+export class InputUserComponent {
 
   @Input() control: any;
   @Input() id: string;
@@ -15,7 +15,4 @@ export class InputUserComponent implements OnInit {
   @Input() textLabel: string;
   @Input() type: any;
 
-  constructor() { }
-
-  ngOnInit() { }
 }

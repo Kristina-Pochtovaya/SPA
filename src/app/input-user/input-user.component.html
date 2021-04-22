@@ -1,13 +1,31 @@
 <div >
     <label  [class]="classLabel" [for]="id">{{ textLabel }}: </label>
-    <input 
+    <input  *ngIf="!(id === 'Password' || id === 'Email' || id === 'Job' || id === 'Children')"
         [class]="class"
-        [type]="id === 'Password' ? 'password': 'text' " 
+        type="text" 
+        [id] = "id"
+        [formControl] = "control"
+    >
+    <input *ngIf="id === 'Password'"
+        [class]="class"
+        type="password" 
+        [id] = "id"
+        [formControl] = "control"
+    >
+    <input *ngIf="id === 'Email'"
+        [class]="class"
+        type="email" 
+        [id] = "id"
+        [formControl] = "control"
+    >
+    <input  *ngIf="(id === 'Children' || id === 'Job')"
+        [class]="class"
+        type="checkbox"
         [id] = "id"
         [formControl] = "control"
     >
    <div class="errorInput" *ngIf="control.touched && control.invalid">
-        <div *ngIf="control.errors.cannotContainCharacters">Ages cannot contain characters</div>
+        <div *ngIf="control.errors.cannotContainCharacters">{{ control.errors.cannotContainCharacters }}</div>
         <div *ngIf="control.errors.required">{{ textLabel }} is required</div>
         <div *ngIf="control.errors.email">Email should have email format</div>
         <div *ngIf="control.errors.minlength && control.errors.minlength.requiredLength">

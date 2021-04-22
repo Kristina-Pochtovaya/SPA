@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from './models/user.model';
-import { AgesInputValidators } from './ages.validators';
+import { InputValidators } from './input.validators';
 
 export enum UserEnum {
   FirstName = 'FirstName',
@@ -19,10 +19,10 @@ export interface IUserDto {
   password: string;
 } 
 
-interface IInputArray {
-  classLabel:string
-  textLabel:string
-  id: string
+interface IInputArrayDto {
+  classLabel: string;
+  textLabel: string;
+  id: string;
 }
 
 export const users: User[] = [];
@@ -40,14 +40,12 @@ export class SecondPageComponent implements OnInit {
 
   UserEnum = UserEnum;
 
-  constructor() { }
-
   ngOnInit() {
     console.log(users);
     this.secondPageForm = this.createFormGroup()
   }
 
-  inputArray: IInputArray[] = [
+  inputArray: IInputArrayDto[] = [
     {classLabel: 'titleLabelRequired', textLabel: 'First Name', id: UserEnum.FirstName},
     {classLabel: 'titleLabel', textLabel: 'Last Name', id: UserEnum.LastName}, 
     {classLabel: 'titleLabel', textLabel: 'Ages', id: UserEnum.Ages},
@@ -71,20 +69,20 @@ export class SecondPageComponent implements OnInit {
     }
   }
 
-private createFormGroup () {
-    return new FormGroup({
-      [UserEnum.FirstName]: new FormControl(null, Validators.required),
-      [UserEnum.LastName]: new FormControl(null),
-      [UserEnum.Ages]: new FormControl(null,AgesInputValidators.cannotContainCharacters),
-      [UserEnum.Email]: new FormControl(null, [Validators.email, Validators.required]),
-      [UserEnum.Password]: new FormControl(null, [Validators.minLength(9),Validators.required]),
-    })
-  } 
-
   addPersonalInfo(): void {
     users.push(new User(this.UserData))
     this.secondPageForm.reset();
     console.log(users); 
   }
+
+  private createFormGroup () {
+    return new FormGroup({
+      [UserEnum.FirstName]: new FormControl(null, Validators.required),
+      [UserEnum.LastName]: new FormControl(null),
+      [UserEnum.Ages]: new FormControl(null,InputValidators.cannotContainCharacters),
+      [UserEnum.Email]: new FormControl(null, [Validators.email, Validators.required]),
+      [UserEnum.Password]: new FormControl(null, [Validators.minLength(9),Validators.required]),
+    })
+  } 
 
 }

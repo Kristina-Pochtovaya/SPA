@@ -1,10 +1,4 @@
-<ul class="user-table"  *ngIf="usersMore.length > 0">
-    <div class="user-header">
-        <div></div>
-        <div class="titleMale">Male</div>
-        <div class="titleChildren">Have children</div>
-        <div class="titleJob">Got a job</div>
-    </div>
+<ul class="user-table"  *ngIf="usersMore.length">
     <li *ngFor="let item of usersMore; let idx = index" class="user-columns">
         <div class="columnUser">User {{ idx + 1 }}</div>
         <div class="columnMale">{{ item.Male }}</div>

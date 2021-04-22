@@ -34,8 +34,6 @@ export class ThirdPageComponent implements OnInit {
     { value: 'Female'}
   ]
 
-  constructor() { }
-
   ngOnInit() {
     console.log(usersMore);
     this.thirdPageForm = this.createFormGroup();
@@ -63,23 +61,20 @@ export class ThirdPageComponent implements OnInit {
     }
   }
 
-  private createFormGroup () {
-    return new FormGroup({
-      [UserEnumMore.Male]: new FormControl('Male'),
-      [UserEnumMore.Children]: new FormControl(false),
-      [UserEnumMore.Job]: new FormControl(false),
-    })
-  }
-
   addPersonalInfoMore(): void {
+    usersMore = [...usersMore]
 
     usersMore.push(new UserMore(this.UserDataMore))
     this.thirdPageForm.reset();
-    this.thirdPageForm = new FormGroup({
-      Male: new FormControl('Male'),
-      Children: new FormControl(false),
-      Job: new FormControl(false)
-    });
+    this.thirdPageForm = this.createFormGroup();
     console.log(usersMore); 
+  }
+
+  private createFormGroup () {
+    return new FormGroup({
+      [UserEnumMore.Male]: new FormControl(UserEnumMore.Male),
+      [UserEnumMore.Children]: new FormControl(false),
+      [UserEnumMore.Job]: new FormControl(false),
+    })
   }
 }

@@ -11,7 +11,6 @@ import { SecondPageComponent } from './second-page/second-page.component';
 import { ThirdPageComponent } from './third-page/third-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InputUserComponent } from './input-user/input-user.component';
-import { CheckboxUserComponent } from './checkbox-user/checkbox-user.component';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { UserTableComponent } from './user-table/user-table.component';
 
@@ -30,7 +29,6 @@ const appRoutes: Routes = [
     ThirdPageComponent,
     NotFoundComponent,
     InputUserComponent,
-    CheckboxUserComponent,
     SelectUserComponent,
     UserTableComponent
   ],

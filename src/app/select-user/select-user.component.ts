@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 export interface IValuesArray {
   value: string
@@ -10,7 +10,7 @@ export interface IValuesArray {
   styleUrls: ['./select-user.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectUserComponent implements OnInit {
+export class SelectUserComponent {
 
   @Input() control: any;
   @Input() valuesArray: IValuesArray[];
@@ -18,10 +18,5 @@ export class SelectUserComponent implements OnInit {
   @Input() id: string;
   @Input() textLabel: string;
   @Input() class: string;
- 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

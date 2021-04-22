@@ -11,12 +11,6 @@ export class UserTableComponent implements OnInit {
 
   @Input() usersMore: UserMore[];
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {
-    setInterval(() => {
-      this._changeDetectorRef.markForCheck();
-    }, 0)
-   }
-
   ngOnInit(): void {
     console.log(this.usersMore)
   }
