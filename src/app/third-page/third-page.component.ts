@@ -15,7 +15,7 @@ export interface IUserMoreDto {
   job: boolean;
 }
 
-export const usersMore: UserMore[] = [];
+export let usersMore: UserMore[] = [];
 
 @Component({
   selector: 'app-third-page',
@@ -44,6 +44,14 @@ export class ThirdPageComponent implements OnInit {
   getControl(name: UserEnumMore) {
     return this.thirdPageForm?.get(name);
   } 
+
+  get onAddUsers():UserMore[] {
+    const arr = usersMore;
+
+    const newUsersMore = arr;
+    usersMore = newUsersMore
+    return usersMore;
+  }
 
   get UserDataMore(): IUserMoreDto {
     const formValue = this.thirdPageForm.value;
