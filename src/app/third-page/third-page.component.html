@@ -7,36 +7,31 @@
         [formGroup]="thirdPageForm"
     >
         <div class="thirdPage-content">
-            <div >
-                <label  class="titleLabel" for=male>Male: </label>
-                <select
-                    class="input"
-                    formControlName="male"
-                >
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-              </select>
-            </div>
-            <div>
-                <label  class="titleLabel" for=children>Have children: </label>
-                <input 
-                    class="input"
-                    formControlName="children"
-                    id="children" 
-                    type="checkbox" 
-                >
-            </div>
-            <div>
-                <label class="titleLabel" for=job>Got a job: </label>
-                <input 
-                    class="input"
-                    formControlName="job"
-                    id="job" 
-                    ngDefaultControl
-                    type="checkbox"  
-                    value=false
-                >
-            </div>
+                <app-select-user
+                    [class]="'input'"
+                    [classLabel]="'titleLabel'"
+                    [textLabel]="'Male'"
+                    [id]="UserEnumMore.Male"
+                    [control]="getControl(UserEnumMore.Male)"
+                    [valuesArray]="valuesArray"
+                    >
+                </app-select-user>
+            <app-checkbox-user
+                [class]="'input'"
+                [classLabel]="'titleLabel'"
+                [textLabel]="'Have children'"
+                [id]="UserEnumMore.Children"
+                [control]="getControl(UserEnumMore.Children)"
+            >
+            </app-checkbox-user>
+            <app-checkbox-user
+                [class]="'input'"
+                [classLabel]="'titleLabel'"
+                [textLabel]="'Got a job'"
+                [id]="UserEnumMore.Job"
+                [control]="getControl(UserEnumMore.Job)"
+            >
+            </app-checkbox-user>
             <div class="action">
                 <button 
                     type="submit"
@@ -48,6 +43,10 @@
             </div>
         </div>
     </form>
+    <app-user-table
+        [usersMore]="usersMore"
+    >
+    </app-user-table>
     <div class="footer">
             <img src="./assets/headerfooter.jpg"  class="footerImage" />
     </div>

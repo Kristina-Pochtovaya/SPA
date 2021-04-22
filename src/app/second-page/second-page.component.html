@@ -7,59 +7,21 @@
         [formGroup]="secondPageForm"
     >
         <div class="secondPage-content">
-            <div >
-                <label  class="titleLabel" for=firstName>First name: </label>
-                <input 
-                    class="input"
-                    formControlName="firstName"
-                    id="firstName" 
-                    type="text" 
-                >
-            </div>
-            <div>
-                <label  class="titleLabel" for=lastName>Last name: </label>
-                <input 
-                    class="input"
-                    formControlName="lastName"
-                    id="lastName" 
-                    type="text" 
-                >
-            </div>
-            <div>
-                <label class="titleLabel" for=ages>Ages: </label>
-                <input 
-                    class="input"
-                    formControlName="ages"
-                    id="ages" 
-                    type="text" 
-                >
-                <div class="agesError" *ngIf="ages.touched && ages.invalid">
-                    <div *ngIf="ages.errors.cannotContainCharacters">Ages cannot contain characters</div>
-                </div>
-            </div>
-            <div>
-                <label class="titleLabel" for=email>E-mail: </label>
-                <input 
-                    class="input"    
-                    formControlName="email"
-                    id="email" 
-                    type="email" 
-                >
-            </div>
-            <div>
-                <label class="titleLabel" for=password>Password: </label>
-                <input 
-                    class="input"
-                    formControlName="password"
-                    id="password" 
-                    type="password" 
-                >
-            </div>
+            <app-input-user
+                *ngFor="let input of inputArray" 
+                [class]="'input'"
+                [classLabel]="input.classLabel"
+                [textLabel]="input.textLabel"
+                [id]="input.id"
+                [control]="getControl(input.id)"
+            >
+            </app-input-user>
             <div class="action">
                 <button 
                     type="submit"
                     class="buttonSecondPage"
                     (click)="addPersonalInfo()"
+                    [disabled]="secondPageForm.invalid"
                 >
                         Add
                 </button>

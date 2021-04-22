@@ -1,37 +1,77 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserMore } from './userMore.model';
+import { UserMore } from './models/userMore.model';
+import { IValuesArray } from '../select-user/select-user.component';
+
+enum UserEnumMore {
+  Male = 'Male',
+  Children = 'Children',
+  Job = 'Job'
+}
+
+export interface IUserMoreDto {
+  male: string;
+  children: boolean;
+  job: boolean;
+}
+
+export const usersMore: UserMore[] = [];
 
 @Component({
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
-  styleUrls: ['./third-page.component.less']
+  styleUrls: ['./third-page.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThirdPageComponent implements OnInit {
 
   thirdPageForm: FormGroup;
+  UserEnumMore = UserEnumMore;
+  usersMore = usersMore;
 
-  usersMore: UserMore[] = [];
+  valuesArray: IValuesArray[] = [
+    { value: 'Male'},
+    { value: 'Female'}
+  ]
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.usersMore);
-    this.thirdPageForm = new FormGroup({
-      male: new FormControl('Male'),
-      children: new FormControl(false),
-      job: new FormControl(false)
-    });
+    console.log(usersMore);
+    this.thirdPageForm = this.createFormGroup();
+  }
+
+  getControl(name: UserEnumMore) {
+    return this.thirdPageForm?.get(name);
+  } 
+
+  get UserDataMore(): IUserMoreDto {
+    const formValue = this.thirdPageForm.value;
+
+    return {
+      male: formValue[UserEnumMore.Male],
+      children: formValue[UserEnumMore.Children],
+      job: formValue[UserEnumMore.Job]
+    }
+  }
+
+  private createFormGroup () {
+    return new FormGroup({
+      [UserEnumMore.Male]: new FormControl('Male'),
+      [UserEnumMore.Children]: new FormControl(false),
+      [UserEnumMore.Job]: new FormControl(false),
+    })
   }
 
   addPersonalInfoMore(): void {
-    this.usersMore.push(new UserMore(this.thirdPageForm.value.male, this.thirdPageForm.value.children, this.thirdPageForm.value.job))
+
+    usersMore.push(new UserMore(this.UserDataMore))
     this.thirdPageForm.reset();
     this.thirdPageForm = new FormGroup({
-      male: new FormControl('Male'),
-      children: new FormControl(false),
-      job: new FormControl(false)
+      Male: new FormControl('Male'),
+      Children: new FormControl(false),
+      Job: new FormControl(false)
     });
-    console.log(this.usersMore); 
+    console.log(usersMore); 
   }
 }

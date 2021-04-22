@@ -1,0 +1,13 @@
+<div >
+    <label  [class]="classLabel"[for]="id">{{ textLabel }}: </label>
+    <select
+        [class]="class"
+        [id] = "id"
+        [formControl] = "control"
+    >
+        <option    
+            *ngFor="let value of valuesArray"
+            [value]="value.value">{{ value.value }}
+        </option>
+  </select>
+</div> 

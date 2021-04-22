@@ -1,15 +1,17 @@
-export class User {
-    firstName: string;
-    lastName: string;
-    ages: number;
-    email: string;
-    password: string;
+import { IUserDto } from '../second-page.component'
 
-    constructor(firstName: string, lastName: string, ages: number,    email: string, password: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ages = ages;
-        this.email = email;
-        this.password = password;
+export class User {
+    FirstName: string;
+    LastName: string;
+    Ages: string;
+    Email: string;
+    Password: string;
+
+    constructor(UserData: IUserDto) {
+        this.FirstName = UserData.firstName;
+        this.LastName = UserData.lastName;
+        this.Ages = UserData.ages;
+        this.Email = UserData.email;
+        this.Password = UserData.password;
     }
 }
