@@ -37,14 +37,4 @@ export class InputValidators {
 
         return null;
     }
-/* 
-    static errorEmailFormat(control: AbstractControl): ValidationErrors | null {
-        let val = control.value;
-
-    if(isNaN(val)){
-        return {errorEmailFormat: 'Email should have email format'}
-    }
-
-        return null;
-    } */
 }
