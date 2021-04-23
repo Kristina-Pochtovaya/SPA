@@ -22,6 +22,7 @@
                 [textLabel]="'Have children'"
                 [id]="UserEnumMore.Children"
                 [control]="getControl(UserEnumMore.Children)"
+                [type]="'checkbox'"
             >
             </app-input-user>
             <app-input-user
@@ -30,6 +31,7 @@
                 [textLabel]="'Got a job'"
                 [id]="UserEnumMore.Job"
                 [control]="getControl(UserEnumMore.Job)"
+                [type]="'checkbox'"
             >
             </app-input-user>
             <div class="action">
@@ -43,7 +45,10 @@
             </div>
         </div>
         <app-user-table
-        [usersMore]="onAddUsers"
+        [usersMore]="usersMore"
+        [controlMale]="getControl(UserEnumMore.Male)"
+        [controlChildren]="getControl(UserEnumMore.Children)"
+        [controlJob]="getControl(UserEnumMore.Job)"
     >
     </app-user-table>
     </form>

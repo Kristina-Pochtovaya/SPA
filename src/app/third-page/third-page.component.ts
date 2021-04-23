@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { UserMore } from './models/userMore.model';
 import { IValuesArray } from '../select-user/select-user.component';
 
-enum UserEnumMore {
+export enum UserEnumMore {
   Male = 'Male',
   Children = 'Children',
   Job = 'Job'
@@ -40,16 +40,8 @@ export class ThirdPageComponent implements OnInit {
   }
 
   getControl(name: UserEnumMore) {
-    return this.thirdPageForm?.get(name);
+    return this.thirdPageForm?.get(name) as FormControl;
   } 
-
-  get onAddUsers():UserMore[] {
-    const arr = usersMore;
-
-    const newUsersMore = arr;
-    usersMore = newUsersMore
-    return usersMore;
-  }
 
   get UserDataMore(): IUserMoreDto {
     const formValue = this.thirdPageForm.value;
@@ -62,8 +54,6 @@ export class ThirdPageComponent implements OnInit {
   }
 
   addPersonalInfoMore(): void {
-    usersMore = [...usersMore]
-
     usersMore.push(new UserMore(this.UserDataMore))
     this.thirdPageForm.reset();
     this.thirdPageForm = this.createFormGroup();

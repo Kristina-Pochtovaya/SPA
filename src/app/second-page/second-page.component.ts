@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './models/user.model';
 import { InputValidators } from './input.validators';
+import { UserService } from '../user-service.service';
 
 export enum UserEnum {
   FirstName = 'FirstName',
@@ -23,6 +24,7 @@ interface IInputArrayDto {
   classLabel: string;
   textLabel: string;
   id: string;
+  type: string;
 }
 
 export const users: User[] = [];
@@ -36,9 +38,8 @@ export const users: User[] = [];
 export class SecondPageComponent implements OnInit {
 
   secondPageForm: FormGroup;
-
-
   UserEnum = UserEnum;
+  error: boolean = false;
 
   ngOnInit() {
     console.log(users);
@@ -46,15 +47,15 @@ export class SecondPageComponent implements OnInit {
   }
 
   inputArray: IInputArrayDto[] = [
-    {classLabel: 'titleLabelRequired', textLabel: 'First Name', id: UserEnum.FirstName},
-    {classLabel: 'titleLabel', textLabel: 'Last Name', id: UserEnum.LastName}, 
-    {classLabel: 'titleLabel', textLabel: 'Ages', id: UserEnum.Ages},
-    {classLabel: 'titleLabelRequired', textLabel: 'Email', id: UserEnum.Email},
-    {classLabel: 'titleLabelRequired', textLabel: 'Password', id: UserEnum.Password},
+    {classLabel: 'titleLabelRequired', textLabel: 'First Name', id: UserEnum.FirstName, type: 'text'},
+    {classLabel: 'titleLabel', textLabel: 'Last Name', id: UserEnum.LastName, type: 'text'}, 
+    {classLabel: 'titleLabel', textLabel: 'Ages', id: UserEnum.Ages, type: 'text'},
+    {classLabel: 'titleLabelRequired', textLabel: 'Email', id: UserEnum.Email, type: 'email'},
+    {classLabel: 'titleLabelRequired', textLabel: 'Password', id: UserEnum.Password, type: 'password'},
   ]
 
   getControl (name: string) {
-    return this.secondPageForm?.get(name);
+    return this.secondPageForm?.get(name) as FormControl;
   }
 
   get UserData (): IUserDto {
@@ -70,11 +71,19 @@ export class SecondPageComponent implements OnInit {
   }
 
   addPersonalInfo(): void {
-    users.push(new User(this.UserData))
-    this.secondPageForm.reset();
-    console.log(users); 
+    if(this.secondPageForm.invalid) {
+      this.error = true;
+    } else {
+      users.push(new User(this.UserData))
+      this.secondPageForm.reset();
+      console.log(users); 
   }
+}
 
+  hideError(): void {
+    this.error = false;
+  }
+  
   private createFormGroup () {
     return new FormGroup({
       [UserEnum.FirstName]: new FormControl(null, InputValidators.cannotBeEmpty),

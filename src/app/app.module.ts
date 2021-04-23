@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { Routes, RouterModule } from '@angular/router';
 
@@ -13,6 +14,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InputUserComponent } from './input-user/input-user.component';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserService } from './user-service.service';
 
 const appRoutes: Routes = [
   {path: '', component: FirstPageComponent},
@@ -34,12 +37,14 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    MatChipsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

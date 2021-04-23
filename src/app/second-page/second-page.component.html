@@ -14,16 +14,20 @@
                 [textLabel]="input.textLabel"
                 [id]="input.id"
                 [control]="getControl(input.id)"
+                [type]="input.type"
+                (click) = "hideError()"
             >
             </app-input-user>
+            <div class="errorInput" *ngIf="error">
+                Please fill in the required fields
+            </div>
             <div class="action">
                 <button 
                     type="submit"
                     class="buttonSecondPage"
                     (click)="addPersonalInfo()"
-                    [disabled]="secondPageForm.invalid"
                 >
-                        Add
+                    Add
                 </button>
             </div>
         </div>

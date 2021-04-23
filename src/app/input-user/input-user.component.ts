@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-user',
@@ -8,11 +9,17 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class InputUserComponent {
 
-  @Input() control: any;
+  @Input() control: FormControl; 
   @Input() id: string;
   @Input() class: string;
   @Input() classLabel: string;
   @Input() textLabel: string;
-  @Input() type: any;
+  @Input() type: string;
 
+  ngOnInit(): void { }
+
+  showErrorMessage(): string {
+    return Object.values(this.control.errors).join();
+  }
+  
 }

@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 export interface IValuesArray {
   value: string
@@ -12,7 +13,7 @@ export interface IValuesArray {
 })
 export class SelectUserComponent {
 
-  @Input() control: any;
+  @Input() control: FormControl;
   @Input() valuesArray: IValuesArray[];
   @Input() classLabel: string;
   @Input() id: string;

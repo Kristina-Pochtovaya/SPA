@@ -1,8 +1,14 @@
-<ul class="user-table"  *ngIf="usersMore.length">
-    <li *ngFor="let item of usersMore; let idx = index" class="user-columns">
-        <div class="columnUser">User {{ idx + 1 }}</div>
-        <div class="columnMale">{{ item.Male }}</div>
-        <div class="columnChildren">{{ item.Children === false ? 'No': 'Yes' }}</div>
-        <div class="columnJob">{{ item.Job === false ? 'No': 'Yes' }}</div>
-    </li>
-</ul>
+<mat-chip-list *ngFor="let item of usersMore; let idx = index">
+    <mat-chip color="primary" selected class="userAbout">
+        User {{ idx + 1 }}
+    </mat-chip>
+    <mat-chip color="warn" selected class="userAbout" (click)="addBackToForm(item.Male, idx, 'Male')">
+        {{item.Male}} 
+    </mat-chip>
+    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Children, idx, 'Children')">
+        {{ item.Children === false ? 'No': 'Yes' }} 
+    </mat-chip>
+    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Job, idx, 'Job')">
+        {{ item.Job === false ? 'No': 'Yes' }}
+    </mat-chip>
+</mat-chip-list>
