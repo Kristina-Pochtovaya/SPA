@@ -77,11 +77,11 @@ export class SecondPageComponent implements OnInit {
 
   private createFormGroup () {
     return new FormGroup({
-      [UserEnum.FirstName]: new FormControl(null, Validators.required),
+      [UserEnum.FirstName]: new FormControl(null, InputValidators.cannotBeEmpty),
       [UserEnum.LastName]: new FormControl(null),
       [UserEnum.Ages]: new FormControl(null,InputValidators.cannotContainCharacters),
-      [UserEnum.Email]: new FormControl(null, [Validators.email, Validators.required]),
-      [UserEnum.Password]: new FormControl(null, [Validators.minLength(9),Validators.required]),
+      [UserEnum.Email]: new FormControl(null, [InputValidators.emailFormat, InputValidators.cannotBeEmpty]),
+      [UserEnum.Password]: new FormControl(null, [InputValidators.minLength,InputValidators.cannotBeEmpty]),
     })
   } 
 

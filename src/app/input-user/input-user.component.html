@@ -26,11 +26,8 @@
     >
    <div class="errorInput" *ngIf="control.touched && control.invalid">
         <div *ngIf="control.errors.cannotContainCharacters">{{ control.errors.cannotContainCharacters }}</div>
-        <div *ngIf="control.errors.required">{{ textLabel }} is required</div>
-        <div *ngIf="control.errors.email">Email should have email format</div>
-        <div *ngIf="control.errors.minlength && control.errors.minlength.requiredLength">
-            Password length should be at least {{ control.errors.minlength.requiredLength }} symbols.
-            Now {{ control.errors.minlength.actualLength }}. 
-        </div>
+        <div *ngIf="control.errors.cannotBeEmpty">{{ control.errors.cannotBeEmpty }}</div>
+        <div *ngIf="control.errors.emailFormat">{{ control.errors.emailFormat}}</div>
+        <div *ngIf="control.errors.minLength">{{ control.errors.minLength }}</div>
     </div>  
 </div>
