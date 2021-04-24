@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserMore } from './models/userMore.model';
 import { IValuesArray } from '../select-user/select-user.component';
+import { UserService } from '../user-service.service';
 
 export enum UserEnumMore {
   Male = 'Male',
@@ -15,8 +16,6 @@ export interface IUserMoreDto {
   job: boolean;
 }
 
-export let usersMore: UserMore[] = [];
-
 @Component({
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
@@ -27,15 +26,18 @@ export class ThirdPageComponent implements OnInit {
 
   thirdPageForm: FormGroup;
   UserEnumMore = UserEnumMore;
-  usersMore = usersMore;
+  usersMore: UserMore[] = [];
 
   valuesArray: IValuesArray[] = [
     { value: 'Male'},
     { value: 'Female'}
   ]
 
+  constructor(private service: UserService) {}
+
   ngOnInit() {
-    console.log(usersMore);
+    console.log(this.usersMore);
+    this.usersMore = this.service.getUsersMore(this.usersMore)
     this.thirdPageForm = this.createFormGroup();
   }
 
@@ -54,10 +56,10 @@ export class ThirdPageComponent implements OnInit {
   }
 
   addPersonalInfoMore(): void {
-    usersMore.push(new UserMore(this.UserDataMore))
+    this.usersMore.push(new UserMore(this.UserDataMore))
     this.thirdPageForm.reset();
     this.thirdPageForm = this.createFormGroup();
-    console.log(usersMore); 
+    console.log(this.usersMore); 
   }
 
   private createFormGroup () {

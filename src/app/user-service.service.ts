@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { User } from './second-page/models/user.model';
-import { users } from './second-page/second-page.component'
 import { UserMore } from './third-page/models/userMore.model';
-import { usersMore } from './third-page/third-page.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+   myUsers: User[]=[];
+   myUsersMore: UserMore[]=[];
 
-    getUsers(): User[] {
-      return users;
-    }
+      getUsers(users: User[]): User[] {
+        this.myUsers= this.myUsers.concat(users)
+        return this.myUsers;
+      }
 
-    getUsersMore(): UserMore[] {
-      return usersMore;
+    getUsersMore(usersMore: UserMore[]): UserMore[] {
+      this.myUsersMore= this.myUsersMore.concat(usersMore)
+      return this.myUsersMore;
     }
 
   constructor() { }

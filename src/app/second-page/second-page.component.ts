@@ -27,8 +27,6 @@ interface IInputArrayDto {
   type: string;
 }
 
-export const users: User[] = [];
-
 @Component({
   selector: 'app-second-page',
   templateUrl: './second-page.component.html',
@@ -40,10 +38,14 @@ export class SecondPageComponent implements OnInit {
   secondPageForm: FormGroup;
   UserEnum = UserEnum;
   error: boolean = false;
+  users: User[] = [];
+
+  constructor(private service: UserService) {}
 
   ngOnInit() {
-    console.log(users);
     this.secondPageForm = this.createFormGroup()
+    this.users = this.service.getUsers(this.users)
+    console.log(this.users);
   }
 
   inputArray: IInputArrayDto[] = [
@@ -73,10 +75,10 @@ export class SecondPageComponent implements OnInit {
   addPersonalInfo(): void {
     if(this.secondPageForm.invalid) {
       this.error = true;
-    } else {
-      users.push(new User(this.UserData))
+    } else {  
+     this.users.push(new User(this.UserData))
       this.secondPageForm.reset();
-      console.log(users); 
+      console.log(this.users); 
   }
 }
 
