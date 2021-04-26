@@ -39,6 +39,7 @@ export class SecondPageComponent implements OnInit {
   UserEnum = UserEnum;
   error: boolean = false;
   users: User[] = [];
+  index: number;
 
   constructor(private service: UserService) {}
 
@@ -72,14 +73,29 @@ export class SecondPageComponent implements OnInit {
     }
   }
 
+  addIndex(index: number) {
+    this.index = index;
+  }
+
   addPersonalInfo(): void {
     if(this.secondPageForm.invalid) {
       this.error = true;
     } else {  
-     this.users.push(new User(this.UserData))
-      this.secondPageForm.reset();
-      console.log(this.users); 
-  }
+      if (!this.index && this.index!==0) {
+        this.users.push(new User(this.UserData))
+        this.secondPageForm.reset();
+        console.log(this.users); 
+      } else {
+        this.users = [
+          ...this.users.slice(0, this.index),
+          new User(this.UserData),
+          ...this.users.slice(this.index + 1)];
+          
+          this.users = this.service.updateUsers(this.users);
+          this.secondPageForm.reset();
+          this.index=null;
+      }
+    } 
 }
 
   hideError(): void {

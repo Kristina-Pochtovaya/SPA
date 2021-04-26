@@ -27,10 +27,20 @@
                     class="buttonSecondPage"
                     (click)="addPersonalInfo()"
                 >
-                    Add
+                    {{!index && index!== 0 ? "Add": "Edit"}}
                 </button>
             </div>
         </div>
+        <app-user-info
+        [users]="users"
+        [controlFirstName]="getControl(UserEnum.FirstName)"
+        [controlLastName]="getControl(UserEnum.LastName)"
+        [controlAges]="getControl(UserEnum.Ages)"
+        [controlEmail]="getControl(UserEnum.Email)"
+        [controlPassword]="getControl(UserEnum.Password)"
+        (newSetIndexEvent)="addIndex($event)"
+        >
+        </app-user-info>
     </form>
     <div class="footer">
             <img src="./assets/headerfooter.jpg"  class="footerImage" />

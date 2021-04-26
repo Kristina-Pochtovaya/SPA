@@ -1,14 +1,14 @@
-<mat-chip-list *ngFor="let item of usersMore; let idx = index">
-    <mat-chip color="primary" selected class="userAbout">
+<mat-chip-list *ngFor="let item of usersMore; let idx = index" >
+    <mat-chip color="primary" selected class="userAbout" (click)="addBackToForm(item.Male, item.Children, item.Job);setIndex(idx)">
         User {{ idx + 1 }}
     </mat-chip>
-    <mat-chip color="warn" selected class="userAbout" (click)="addBackToForm(item.Male, idx, 'Male')">
+    <mat-chip color="warn" selected class="userAbout"  (click)="addBackToForm(item.Male, item.Children, item.Job);setIndex(idx)">
         {{item.Male}} 
     </mat-chip>
-    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Children, idx, 'Children')">
+    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Male, item.Children, item.Job);setIndex(idx)">
         {{ item.Children === false ? 'No': 'Yes' }} 
     </mat-chip>
-    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Job, idx, 'Job')">
+    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.Male, item.Children, item.Job);setIndex(idx)">
         {{ item.Job === false ? 'No': 'Yes' }}
     </mat-chip>
 </mat-chip-list>

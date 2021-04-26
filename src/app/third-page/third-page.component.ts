@@ -20,13 +20,14 @@ export interface IUserMoreDto {
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
   styleUrls: ['./third-page.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class ThirdPageComponent implements OnInit {
 
   thirdPageForm: FormGroup;
   UserEnumMore = UserEnumMore;
   usersMore: UserMore[] = [];
+  index: number;
 
   valuesArray: IValuesArray[] = [
     { value: 'Male'},
@@ -55,11 +56,28 @@ export class ThirdPageComponent implements OnInit {
     }
   }
 
+  addIndex(index: number) {
+    this.index = index;
+  }
+
   addPersonalInfoMore(): void {
+  if (!this.index && this.index!==0) {
     this.usersMore.push(new UserMore(this.UserDataMore))
     this.thirdPageForm.reset();
     this.thirdPageForm = this.createFormGroup();
+
     console.log(this.usersMore); 
+ }  else {
+    this.usersMore = [
+    ...this.usersMore.slice(0, this.index),
+    new UserMore(this.UserDataMore),
+    ...this.usersMore.slice(this.index + 1)];
+    
+    this.usersMore = this.service.updateUsersMore(this.usersMore);
+    this.thirdPageForm.reset();
+    this.thirdPageForm = this.createFormGroup();
+    this.index=null;
+  }
   }
 
   private createFormGroup () {

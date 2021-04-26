@@ -14,10 +14,20 @@ export class UserService {
         return this.myUsers;
       }
 
-    getUsersMore(usersMore: UserMore[]): UserMore[] {
-      this.myUsersMore= this.myUsersMore.concat(usersMore)
-      return this.myUsersMore;
-    }
+      updateUsers(users: User[]): User[] {
+        this.myUsers=users;
+        return this.myUsers;
+      }
+
+      getUsersMore(usersMore: UserMore[]): UserMore[] {
+        this.myUsersMore= this.myUsersMore.concat(usersMore)
+        return this.myUsersMore;
+      }
+
+      updateUsersMore(usersMore: UserMore[]): UserMore[] {
+        this.myUsersMore=usersMore;
+        return this.myUsersMore;
+      }
 
   constructor() { }
 }

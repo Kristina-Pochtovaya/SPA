@@ -40,19 +40,19 @@
                     class="buttonThirdPage"
                     (click)="addPersonalInfoMore()"
                 >
-                        Add
+                        {{!index && index!== 0 ? "Add": "Edit"}}
                 </button>
             </div>
         </div>
         <app-user-table
-        [usersMore]="usersMore"
-        [controlMale]="getControl(UserEnumMore.Male)"
-        [controlChildren]="getControl(UserEnumMore.Children)"
-        [controlJob]="getControl(UserEnumMore.Job)"
+            [usersMore]="usersMore"
+            [controlMale]="getControl(UserEnumMore.Male)"
+            [controlChildren]="getControl(UserEnumMore.Children)"
+            [controlJob]="getControl(UserEnumMore.Job)"
+            (newSetIndexEvent)="addIndex($event)"
     >
     </app-user-table>
     </form>
-
     <div class="footer">
             <img src="./assets/headerfooter.jpg"  class="footerImage" />
     </div>

@@ -16,6 +16,7 @@ import { SelectUserComponent } from './select-user/select-user.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user-service.service';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 const appRoutes: Routes = [
   {path: '', component: FirstPageComponent},
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     InputUserComponent,
     SelectUserComponent,
-    UserTableComponent
+    UserTableComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

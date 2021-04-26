@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy,ChangeDetectorRef, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy,ChangeDetectorRef, DoCheck, Output,EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserMore } from '../third-page/models/userMore.model';
-import { UserEnumMore } from '../third-page/third-page.component';
+import { IUserMoreDto } from '../third-page/third-page.component';
 
 @Component({
   selector: 'app-user-table',
@@ -15,6 +15,7 @@ export class UserTableComponent implements OnInit, DoCheck {
   @Input() controlMale: FormControl;
   @Input() controlChildren: FormControl;
   @Input() controlJob: FormControl;
+  @Output() newSetIndexEvent = new EventEmitter<number>();
 
   constructor(private cd: ChangeDetectorRef) {  }
 
@@ -26,10 +27,14 @@ export class UserTableComponent implements OnInit, DoCheck {
     console.log(this.usersMore)
   }
 
-  addBackToForm(value: string | boolean, index: number, name: string): void {
-    if(name === UserEnumMore.Male) {this.controlMale.setValue(value)}
-    if(name === UserEnumMore.Children) {this.controlChildren.setValue(value)}
-    if(name === UserEnumMore.Job) {this.controlJob.setValue(value)}
+  setIndex(idx: number) {
+    this.newSetIndexEvent.emit(idx);
+  }
+
+  addBackToForm(male: IUserMoreDto["male"], children: IUserMoreDto["children"], job: IUserMoreDto["job"]): void {
+    this.controlMale.setValue(male);
+    this.controlChildren.setValue(children);
+    this.controlJob.setValue(job);
     console.log(this.usersMore)
   }
 
