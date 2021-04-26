@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { Routes, RouterModule } from '@angular/router';
 
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     MatChipsModule,
+    MatTabsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
