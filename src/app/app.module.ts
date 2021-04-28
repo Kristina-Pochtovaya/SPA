@@ -15,9 +15,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InputUserComponent } from './input-user/input-user.component';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user-service.service';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { PageTabDirective } from './page-tab.directive';
 
 const appRoutes: Routes = [
   {path: '', component: FirstPageComponent},
@@ -36,7 +38,12 @@ const appRoutes: Routes = [
     InputUserComponent,
     SelectUserComponent,
     UserTableComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PageTabDirective,
+  ],
+  entryComponents: [
+    SecondPageComponent,
+    ThirdPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
