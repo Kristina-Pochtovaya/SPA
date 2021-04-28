@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './models/user.model';
 import { InputValidators } from './input.validators';
 import { UserService } from '../user-service.service';
+import { tabConfig } from '../tabConfig-model';
 
 export enum UserEnum {
   FirstName = 'FirstName',
@@ -13,6 +14,7 @@ export enum UserEnum {
 };
 
 export interface IUserDto {
+  index?: number;
   firstName: string;
   lastName: string;
   ages: string;
@@ -34,7 +36,7 @@ interface IInputArrayDto {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SecondPageComponent implements OnInit {
-
+  IsTabConfigData: boolean;
   secondPageForm: FormGroup;
   UserEnum = UserEnum;
   error: boolean = false;
@@ -77,6 +79,10 @@ export class SecondPageComponent implements OnInit {
     this.index = index;
   }
 
+  setIsTabConfigData (IsTabConfigData: boolean) {
+    this.IsTabConfigData = IsTabConfigData;
+  }
+
   addPersonalInfo(): void {
     if(this.secondPageForm.invalid) {
       this.error = true;
@@ -85,6 +91,14 @@ export class SecondPageComponent implements OnInit {
         this.users.push(new User(this.UserData))
         this.secondPageForm.reset();
         console.log(this.users); 
+      }  else if(this.IsTabConfigData === true) {
+        tabConfig[0].data[0].FirstName =  this.secondPageForm.value.FirstName;
+        tabConfig[0].data[0].LastName =  this.secondPageForm.value.LastName;
+        tabConfig[0].data[0].Ages =  this.secondPageForm.value.Ages;
+        tabConfig[0].data[0].Email =  this.secondPageForm.value.Email;
+        tabConfig[0].data[0].Password =  this.secondPageForm.value.Password;
+        this.secondPageForm.reset();
+        this.index = null;
       } else {
         this.users = [
           ...this.users.slice(0, this.index),

@@ -11,6 +11,14 @@ export enum UserEnumMore {
 }
 
 export interface IUserMoreDto {
+  idx?: number;
+  male: string;
+  children: boolean;
+  job: boolean;
+}
+
+export interface IUserMoreDto {
+  idx?: number;
   male: string;
   children: boolean;
   job: boolean;

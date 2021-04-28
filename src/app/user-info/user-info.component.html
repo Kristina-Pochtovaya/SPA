@@ -1,42 +1,25 @@
 <mat-chip-list >
-    <mat-chip color="primary" selected class="userAbout">
-        User {{ "idx + 1" }}
-    </mat-chip>
-    <mat-chip color="warn" selected class="userAbout">
-        {{ "item.FirstName" }} 
-    </mat-chip>
-    <mat-chip color="warn" selected class="userAbout">
-        {{ "item.LastName" }} 
-    </mat-chip>
-    <mat-chip color="accent" selected class="userAbout">
-        {{ "item.Ages" }} 
-    </mat-chip>
-    <mat-chip class="userAbout purple">
-        {{ "item.Email" }} 
-    </mat-chip>
-    <mat-chip class="userAbout darkGreen">
-        {{ "item.Password" }} 
-    </mat-chip>
+    <mat-chip
+        *ngFor="let item of matChipArray"
+        color={{item.color}}
+        selected = {{item.selected}}
+        class={{item.class}}
+        (click)="addBackToForm(tabConfig[0].data[0].idx,tabConfig[0].data[0].FirstName, tabConfig[0].data[0].LastName, tabConfig[0].data[0].Ages, tabConfig[0].data[0].Email, tabConfig[0].data[0].Password);
+        setIndex(tabConfig[0].data[0].idx);"
+    >
+        {{setText(item.id)}}
+    </mat-chip> 
 </mat-chip-list>
 
-
-<mat-chip-list *ngFor="let item of users; let idx = index" >
-    <mat-chip color="primary" selected class="userAbout" (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        User {{ idx + 1 }}
-    </mat-chip>
-    <mat-chip color="warn" selected class="userAbout"  (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        {{item.FirstName}} 
-    </mat-chip>
-    <mat-chip color="warn" selected class="userAbout"  (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        {{item.LastName}} 
-    </mat-chip>
-    <mat-chip color="accent" selected class="userAbout" (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        {{ item.Ages }} 
-    </mat-chip>
-    <mat-chip class="userAbout purple" (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        {{ item.Email }} 
-    </mat-chip>
-    <mat-chip class="userAbout darkGreen" (click)="addBackToForm(item.FirstName, item.LastName, item.Ages, item.Email, item.Password);setIndex(idx)">
-        {{ item.Password }} 
-    </mat-chip>
+<mat-chip-list *ngFor="let itemUsers of users; let idx = index" >
+    <mat-chip
+        *ngFor="let item of matChipArray"
+        color={{item.color}}
+        selected = {{item.selected}}
+        class={{item.class}}
+        (click)="addBackToForm(idx + 2 , itemUsers.FirstName, itemUsers.LastName, itemUsers.Ages, itemUsers.Email, itemUsers.Password);
+        setIndex(idx)"
+    >  
+        {{setTextFromUsers(item.id, idx)}}
+    </mat-chip> 
 </mat-chip-list>

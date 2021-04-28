@@ -35,6 +35,7 @@
         [controlAges]="getControl(UserEnum.Ages)"
         [controlEmail]="getControl(UserEnum.Email)"
         [controlPassword]="getControl(UserEnum.Password)"
+        (newSetIsTabConfigData)="setIsTabConfigData($event)"
         (newSetIndexEvent)="addIndex($event)"
         >
         </app-user-info>
