@@ -1,13 +1,20 @@
-import { IUserMoreDto } from '../third-page.component';
+export interface IUserMoreDto {
+  idx?: number;
+  male: string;
+  children: boolean;
+  job: boolean;
+}
 
 export class UserMore {
-    Male: string;
-    Children: boolean;
-    Job: boolean;
+  Male: string;
 
-    constructor(UserDataMore: IUserMoreDto) {
-        this.Male = UserDataMore.male;
-        this.Children = UserDataMore.children;
-        this.Job = UserDataMore.job;
-    }
+  Children: boolean;
+
+  Job: boolean;
+
+  constructor(UserDataMore: IUserMoreDto) {
+    this.Male = UserDataMore.male;
+    this.Children = UserDataMore.children;
+    this.Job = UserDataMore.job;
+  }
 }

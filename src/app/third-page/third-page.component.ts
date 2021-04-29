@@ -1,24 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component, OnInit, ChangeDetectionStrategy, Input,
+} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserMore } from './models/userMore.model';
+import { UserMore, IUserMoreDto } from './models/userMore.model';
 import { IValuesArray } from '../select-user/select-user.component';
 import { UserService } from '../user-service.service';
 
 export enum UserEnumMore {
   Male = 'Male',
   Children = 'Children',
-  Job = 'Job'
+  Job = 'Job',
 }
 
-export interface IUserMoreDto {
-  idx?: number;
-  male: string;
-  children: boolean;
-  job: boolean;
-}
-
-export interface IUserMoreDto {
-  idx?: number;
+export interface ItabConfigDataThirdPage {
+  idx: number;
   male: string;
   children: boolean;
   job: boolean;
@@ -28,31 +23,36 @@ export interface IUserMoreDto {
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
   styleUrls: ['./third-page.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush 
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThirdPageComponent implements OnInit {
+  @Input() tabConfigData: ItabConfigDataThirdPage;
 
   thirdPageForm: FormGroup;
+
   UserEnumMore = UserEnumMore;
-  usersMore: UserMore[] = [];
+
   index: number;
 
   valuesArray: IValuesArray[] = [
-    { value: 'Male'},
-    { value: 'Female'}
-  ]
+    { value: 'Male' },
+    { value: 'Female' },
+  ];
 
   constructor(private service: UserService) {}
 
   ngOnInit() {
     console.log(this.usersMore);
-    this.usersMore = this.service.getUsersMore(this.usersMore)
     this.thirdPageForm = this.createFormGroup();
   }
 
   getControl(name: UserEnumMore) {
     return this.thirdPageForm?.get(name) as FormControl;
-  } 
+  }
+
+  get usersMore() {
+    return this.service.myUsersMore;
+  }
 
   get UserDataMore(): IUserMoreDto {
     const formValue = this.thirdPageForm.value;
@@ -60,8 +60,8 @@ export class ThirdPageComponent implements OnInit {
     return {
       male: formValue[UserEnumMore.Male],
       children: formValue[UserEnumMore.Children],
-      job: formValue[UserEnumMore.Job]
-    }
+      job: formValue[UserEnumMore.Job],
+    };
   }
 
   addIndex(index: number) {
@@ -69,30 +69,23 @@ export class ThirdPageComponent implements OnInit {
   }
 
   addPersonalInfoMore(): void {
-  if (!this.index && this.index!==0) {
-    this.usersMore.push(new UserMore(this.UserDataMore))
-    this.thirdPageForm.reset();
-    this.thirdPageForm = this.createFormGroup();
+    if (!this.index && this.index !== 0) {
+      this.usersMore.push(new UserMore(this.UserDataMore));
+      this.thirdPageForm.reset();
+      this.thirdPageForm = this.createFormGroup();
 
-    console.log(this.usersMore); 
- }  else {
-    this.usersMore = [
-    ...this.usersMore.slice(0, this.index),
-    new UserMore(this.UserDataMore),
-    ...this.usersMore.slice(this.index + 1)];
-    
-    this.usersMore = this.service.updateUsersMore(this.usersMore);
-    this.thirdPageForm.reset();
-    this.thirdPageForm = this.createFormGroup();
-    this.index=null;
-  }
+      console.log(this.usersMore);
+    } else {
+      this.service.changeUserMore(this.index, this.UserDataMore);
+      this.index = null;
+    }
   }
 
-  private createFormGroup () {
+  public createFormGroup() {
     return new FormGroup({
-      [UserEnumMore.Male]: new FormControl(UserEnumMore.Male),
-      [UserEnumMore.Children]: new FormControl(false),
-      [UserEnumMore.Job]: new FormControl(false),
-    })
+      [UserEnumMore.Male]: new FormControl(this.tabConfigData.male),
+      [UserEnumMore.Children]: new FormControl(this.tabConfigData.children),
+      [UserEnumMore.Job]: new FormControl(this.tabConfigData.job),
+    });
   }
 }

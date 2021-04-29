@@ -1,17 +1,18 @@
-<mat-chip-list >
+<!-- <mat-chip-list >
     <mat-chip
         *ngFor="let item of matChipArray"
         color={{item.color}}
         selected = {{item.selected}}
         class={{item.class}}
-        (click)="addBackToForm(tabConfig[0].data[0].idx,tabConfig[0].data[0].FirstName, tabConfig[0].data[0].LastName, tabConfig[0].data[0].Ages, tabConfig[0].data[0].Email, tabConfig[0].data[0].Password);
+        (click)="addBackToForm(tabConfig[0].data[0].idx,tabConfig[0].data[0].FirstName, tabConfig[0].data[0].LastName, 
+        tabConfig[0].data[0].Ages, tabConfig[0].data[0].Email, tabConfig[0].data[0].Password);
         setIndex(tabConfig[0].data[0].idx);"
     >
         {{setText(item.id)}}
     </mat-chip> 
-</mat-chip-list>
+</mat-chip-list> -->
 
-<mat-chip-list *ngFor="let itemUsers of users; let idx = index" >
+<mat-chip-list *ngFor="let itemUsers of users; let idx = index">
     <mat-chip
         *ngFor="let item of matChipArray"
         color={{item.color}}

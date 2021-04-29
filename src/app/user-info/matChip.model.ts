@@ -1,57 +1,54 @@
-import { tabConfig } from "../tabConfig-model";
-
 export enum MatChipArrayEnum {
-    Id = 'Id',
-    FirstName = 'FirstName',
-    LastName = 'LastName',
-    Ages = 'Ages',
-    Email = 'Email',
-    Password = 'Password'
-  };
+  Id = 'Id',
+  FirstName = 'FirstName',
+  LastName = 'LastName',
+  Ages = 'Ages',
+  Email = 'Email',
+  Password = 'Password',
+}
 
 export interface ImatChipArrayDto {
-    color: string;
-    selected: boolean;
-    class: string;
-    id: string;
-  }
-  
+  color: string;
+  selected: boolean;
+  class: string;
+  id: string;
+}
 
 export const matChipArray: ImatChipArrayDto[] = [
-    {
-    color: "primary",
+  {
+    color: 'primary',
     selected: true,
     class: 'userAbout',
-    id: MatChipArrayEnum.Id
+    id: MatChipArrayEnum.Id,
   },
   {
-    color: "warn",
+    color: 'warn',
     selected: true,
     class: 'userAbout',
-    id: MatChipArrayEnum.FirstName
+    id: MatChipArrayEnum.FirstName,
   },
   {
-    color: "warn",
+    color: 'warn',
     selected: true,
     class: 'userAbout',
-    id: MatChipArrayEnum.LastName
+    id: MatChipArrayEnum.LastName,
   },
   {
-    color: "accent",
+    color: 'accent',
     selected: true,
     class: 'userAbout',
-    id: MatChipArrayEnum.Ages
+    id: MatChipArrayEnum.Ages,
   },
   {
-    color: "",
+    color: '',
     selected: false,
     class: 'userAbout purple',
-    id: MatChipArrayEnum.Email
+    id: MatChipArrayEnum.Email,
   },
   {
-    color: "",
+    color: '',
     selected: false,
     class: 'userAbout darkGreen',
-    id: MatChipArrayEnum.Password
+    id: MatChipArrayEnum.Password,
   },
-] 
+];

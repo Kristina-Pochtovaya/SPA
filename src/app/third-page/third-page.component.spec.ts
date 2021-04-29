@@ -8,9 +8,9 @@ describe('ThirdPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThirdPageComponent ]
+      declarations: [ThirdPageComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

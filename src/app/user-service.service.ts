@@ -1,33 +1,22 @@
 import { Injectable } from '@angular/core';
-import { User } from './second-page/models/user.model';
-import { UserMore } from './third-page/models/userMore.model';
+import { IUserDto, User } from './second-page/models/user.model';
+import { IUserMoreDto, UserMore } from './third-page/models/userMore.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-   myUsers: User[]=[];
-   myUsersMore: UserMore[]=[];
+  myUsers: User[]=[];
 
-      getUsers(users: User[]): User[] {
-        this.myUsers= this.myUsers.concat(users)
-        return this.myUsers;
-      }
+  myUsersMore: UserMore[]=[];
 
-      updateUsers(users: User[]): User[] {
-        this.myUsers=users;
-        return this.myUsers;
-      }
+  changeUser(index: number, newUser: IUserDto) {
+    this.myUsers.splice(index, 1, new User(newUser));
+  }
 
-      getUsersMore(usersMore: UserMore[]): UserMore[] {
-        this.myUsersMore= this.myUsersMore.concat(usersMore)
-        return this.myUsersMore;
-      }
-
-      updateUsersMore(usersMore: UserMore[]): UserMore[] {
-        this.myUsersMore=usersMore;
-        return this.myUsersMore;
-      }
-
-  constructor() { }
+  changeUserMore(index: number, newUser: IUserMoreDto) {
+    this.myUsersMore.splice(index, 1, new UserMore(newUser));
+  }
 }
+
+export default UserService;

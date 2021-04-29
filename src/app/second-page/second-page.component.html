@@ -12,11 +12,10 @@
                 [id]="input.id"
                 [control]="getControl(input.id)"
                 [type]="input.type"
-                (click) = "hideError()"
             >
             </app-input-user>
-            <div class="errorInput" *ngIf="error">
-                Please fill in the required fields
+            <div class="errorInput" *ngIf="secondPageForm.invalid && secondPageForm.dirty">
+                Please fill in the required fields 
             </div>
             <div class="action">
                 <button 
@@ -35,7 +34,6 @@
         [controlAges]="getControl(UserEnum.Ages)"
         [controlEmail]="getControl(UserEnum.Email)"
         [controlPassword]="getControl(UserEnum.Password)"
-        (newSetIsTabConfigData)="setIsTabConfigData($event)"
         (newSetIndexEvent)="addIndex($event)"
         >
         </app-user-info>

@@ -8,9 +8,9 @@ describe('InputUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputUserComponent ]
+      declarations: [InputUserComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
