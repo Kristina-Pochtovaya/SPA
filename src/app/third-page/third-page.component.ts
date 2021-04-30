@@ -1,10 +1,12 @@
 import {
   Component, OnInit, ChangeDetectionStrategy, Input,
+  ViewChild,
 } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserMore, IUserMoreDto } from './models/userMore.model';
 import { IValuesArray } from '../select-user/select-user.component';
 import { UserService } from '../user-service.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 export enum UserEnumMore {
   Male = 'Male',
@@ -26,6 +28,8 @@ export interface ItabConfigDataThirdPage {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThirdPageComponent implements OnInit {
+  @ViewChild(UserInfoComponent) child:UserInfoComponent;
+
   @Input() tabConfigData: ItabConfigDataThirdPage;
 
   thirdPageForm: FormGroup;
@@ -68,7 +72,17 @@ export class ThirdPageComponent implements OnInit {
     this.index = index;
   }
 
+  addBackToForm({
+    male, children, job,
+  }: IUserMoreDto): void {
+    this.thirdPageForm.controls.Male.setValue(male);
+    this.thirdPageForm.controls.Children.setValue(children);
+    this.thirdPageForm.controls.Job.setValue(job);
+    console.log(this.usersMore);
+  }
+
   addPersonalInfoMore(): void {
+    this.child.detectChanges();
     if (!this.index && this.index !== 0) {
       this.usersMore.push(new UserMore(this.UserDataMore));
       this.thirdPageForm.reset();
@@ -77,6 +91,7 @@ export class ThirdPageComponent implements OnInit {
       console.log(this.usersMore);
     } else {
       this.service.changeUserMore(this.index, this.UserDataMore);
+      this.thirdPageForm.reset();
       this.index = null;
     }
   }

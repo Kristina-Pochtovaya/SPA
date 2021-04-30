@@ -15,8 +15,6 @@ import { ThirdPageComponent } from './third-page/third-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InputUserComponent } from './input-user/input-user.component';
 import { SelectUserComponent } from './select-user/select-user.component';
-import { UserTableComponent } from './user-table/user-table.component';
-
 import { UserService } from './user-service.service';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { PageTabDirective } from './page-tab.directive';
@@ -37,7 +35,6 @@ const appRoutes: Routes = [
     NotFoundComponent,
     InputUserComponent,
     SelectUserComponent,
-    UserTableComponent,
     UserInfoComponent,
     PageTabDirective,
   ],

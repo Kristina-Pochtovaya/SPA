@@ -1,26 +1,24 @@
-<!-- <mat-chip-list >
-    <mat-chip
-        *ngFor="let item of matChipArray"
-        color={{item.color}}
-        selected = {{item.selected}}
-        class={{item.class}}
-        (click)="addBackToForm(tabConfig[0].data[0].idx,tabConfig[0].data[0].FirstName, tabConfig[0].data[0].LastName, 
-        tabConfig[0].data[0].Ages, tabConfig[0].data[0].Email, tabConfig[0].data[0].Password);
-        setIndex(tabConfig[0].data[0].idx);"
-    >
-        {{setText(item.id)}}
-    </mat-chip> 
-</mat-chip-list> -->
-
 <mat-chip-list *ngFor="let itemUsers of users; let idx = index">
     <mat-chip
         *ngFor="let item of matChipArray"
         color={{item.color}}
         selected = {{item.selected}}
         class={{item.class}}
-        (click)="addBackToForm(idx + 2 , itemUsers.FirstName, itemUsers.LastName, itemUsers.Ages, itemUsers.Email, itemUsers.Password);
+        (click)="addBackToForm2Page(itemUsers.firstName, itemUsers.lastName, itemUsers.ages, itemUsers.email, itemUsers.password);
         setIndex(idx)"
     >  
-        {{setTextFromUsers(item.id, idx)}}
+        {{setTextFromUsers2Page(item.id, idx)}}
     </mat-chip> 
+</mat-chip-list>
+<mat-chip-list *ngFor="let itemUsers of usersMore; let idx = index" >
+    <mat-chip
+    *ngFor="let item of matChip3PageArray"
+    color={{item.color}}
+    selected = {{item.selected}}
+    class={{item.class}}
+    (click)="addBackToForm3dPage(itemUsers.male, itemUsers.children, itemUsers.job);
+    setIndex(idx)"
+>  
+    {{setTextFromUsers3Page(item.id, idx)}}
+</mat-chip> 
 </mat-chip-list>

@@ -6,15 +6,15 @@ export interface IUserMoreDto {
 }
 
 export class UserMore {
-  Male: string;
+  male: string;
 
-  Children: boolean;
+  children: boolean;
 
-  Job: boolean;
+  job: boolean;
 
   constructor(UserDataMore: IUserMoreDto) {
-    this.Male = UserDataMore.male;
-    this.Children = UserDataMore.children;
-    this.Job = UserDataMore.job;
+    this.male = UserDataMore.male;
+    this.children = UserDataMore.children;
+    this.job = UserDataMore.job;
   }
 }

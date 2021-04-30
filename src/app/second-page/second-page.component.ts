@@ -1,10 +1,12 @@
 import {
   Component, OnInit, ChangeDetectionStrategy, Input,
+  ViewChild,
 } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User, IUserDto } from './models/user.model';
 import InputValidators from './input.validators';
 import { UserService } from '../user-service.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 export interface ItabConfigDataSecondPage {
   idx: number;
@@ -37,9 +39,9 @@ interface IInputArrayDto {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecondPageComponent implements OnInit {
-  @Input() tabConfigData: ItabConfigDataSecondPage;
+  @ViewChild(UserInfoComponent) child:UserInfoComponent;
 
-  IsTabConfigData: boolean;
+  @Input() tabConfigData: ItabConfigDataSecondPage;
 
   secondPageForm: FormGroup;
 
@@ -98,11 +100,19 @@ export class SecondPageComponent implements OnInit {
     this.index = index;
   }
 
-  setIsTabConfigData(IsTabConfigData: boolean) {
-    this.IsTabConfigData = IsTabConfigData;
+  addBackToForm({
+    firstName, lastName, ages, email, password,
+  }: IUserDto): void {
+    this.secondPageForm.controls.FirstName.setValue(firstName);
+    this.secondPageForm.controls.LastName.setValue(lastName);
+    this.secondPageForm.controls.Ages.setValue(ages);
+    this.secondPageForm.controls.Email.setValue(email);
+    this.secondPageForm.controls.Password.setValue(password);
+    console.log(this.users);
   }
 
   addPersonalInfo(): void {
+    this.child.detectChanges();
     if (this.secondPageForm.invalid) {
       Object.values(this.secondPageForm.controls).forEach((control) => control.markAsDirty());
       return;
@@ -113,6 +123,8 @@ export class SecondPageComponent implements OnInit {
       console.log(this.users);
     } else {
       this.service.changeUser(this.index, this.UserData);
+      this.secondPageForm.reset();
+      this.index = null;
     }
   }
 

@@ -41,14 +41,12 @@
                 </button>
             </div>
         </div>
-        <app-user-table
+        <app-user-info
             [usersMore]="usersMore"
-            [controlMale]="getControl(UserEnumMore.Male)"
-            [controlChildren]="getControl(UserEnumMore.Children)"
-            [controlJob]="getControl(UserEnumMore.Job)"
             (newSetIndexEvent)="addIndex($event)"
+            (newAddBackToForm3dPage)="addBackToForm($event)"
     >
-    </app-user-table>
+    </app-user-info>
     </form>
     <div class="footer">
             <img src="./assets/headerfooter.jpg"  class="footerImage" />

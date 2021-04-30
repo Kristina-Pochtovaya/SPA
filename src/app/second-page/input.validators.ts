@@ -3,7 +3,6 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 class InputValidators {
   static cannotBeEmpty(control: AbstractControl): ValidationErrors | null {
     if (control.value === '' || control.value === null) return { cannotBeEmpty: 'The field cannot be empty' };
-
     return null;
   }
 
@@ -30,11 +29,12 @@ class InputValidators {
 
   static cannotContainCharacters(control: AbstractControl): ValidationErrors | null {
     const val = control.value;
-
-    if (Number.isNaN(val)) {
-      return { cannotContainCharacters: 'Ages cannot contain characters' };
+    const numbers = /^[-+]?[0-9]+$/;
+    if (val !== null) {
+      if (!val.match(numbers)) {
+        return { cannotContainCharacters: 'Ages cannot contain characters' };
+      }
     }
-
     return null;
   }
 }

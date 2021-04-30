@@ -8,21 +8,21 @@ export interface IUserDto {
 }
 
 export class User {
-  FirstName: string;
+  firstName: string;
 
-  LastName: string;
+  lastName: string;
 
-  Ages: string;
+  ages: string;
 
-  Email: string;
+  email: string;
 
-  Password: string;
+  password: string;
 
   constructor(UserData: IUserDto) {
-    this.FirstName = UserData.firstName;
-    this.LastName = UserData.lastName;
-    this.Ages = UserData.ages;
-    this.Email = UserData.email;
-    this.Password = UserData.password;
+    this.firstName = UserData.firstName;
+    this.lastName = UserData.lastName;
+    this.ages = UserData.ages;
+    this.email = UserData.email;
+    this.password = UserData.password;
   }
 }

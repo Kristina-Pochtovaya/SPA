@@ -15,13 +15,14 @@
             >
             </app-input-user>
             <div class="errorInput" *ngIf="secondPageForm.invalid && secondPageForm.dirty">
-                Please fill in the required fields 
+                Please fill in the required fields correctly
             </div>
             <div class="action">
                 <button 
                     type="submit"
                     class="buttonSecondPage"
                     (click)="addPersonalInfo()"
+                
                 >
                     {{!index && index!== 0 ? "Add": "Edit"}}
                 </button>
@@ -29,12 +30,8 @@
         </div>
         <app-user-info
         [users]="users"
-        [controlFirstName]="getControl(UserEnum.FirstName)"
-        [controlLastName]="getControl(UserEnum.LastName)"
-        [controlAges]="getControl(UserEnum.Ages)"
-        [controlEmail]="getControl(UserEnum.Email)"
-        [controlPassword]="getControl(UserEnum.Password)"
         (newSetIndexEvent)="addIndex($event)"
+        (newAddBackToForm2dPage)="addBackToForm($event)"
         >
         </app-user-info>
     </form>
