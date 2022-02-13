@@ -8,23 +8,19 @@ jobs:
 
   audit:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
 
-       - uses: actions/setup-node@v1 #this will install Node and npm on Ubuntu
+  steps:
+    - uses: actions/checkout@v1
+
+    - name: Node $
+      uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-      - run: npm install
-      - run: npm install -g @angular/cli > /dev/null
+        node-version: $
 
-      - name: Build
-        run: ng build
-
-      - name: Start
-        run: ng serve
-
-      - name: Run lint
-        run: go tsc --noEmit && eslint . --ext js,ts,json --quiet --fix
-
-      - name: Run tests
-        run: ng test
+    - name: npm install and npm run build
+      run: |
+        npm ci
+        npm run build:ci
