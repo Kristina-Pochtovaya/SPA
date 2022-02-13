@@ -22,7 +22,7 @@ jobs:
       - name: Start
         run: ng serve
 
-      - name: Run linter
+      - name: Run lint
         run: go tsc --noEmit && eslint . --ext js,ts,json --quiet --fix
 
 
