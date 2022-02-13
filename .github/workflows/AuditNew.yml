@@ -15,11 +15,12 @@ jobs:
           node-version: '14.x'
 
       - name: 'install'
-        run: npm i
 
-      - name: 'build'
-        run: npm run build
 
-      - name: 'test'
-        run: npm run test --if-present
+    run: |
+      npm install
+      npm run build
+      npm test
+      env:
+      CI: true
 
