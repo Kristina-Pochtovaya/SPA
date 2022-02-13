@@ -15,6 +15,14 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      - name: Build
+        run: ng build
+
+      - name: Start
+        run: ng serve
+
+      - name: Run lint
+        run: go tsc --noEmit && eslint . --ext js,ts,json --quiet --fix
 
       - name: Run tests
         run: ng test
