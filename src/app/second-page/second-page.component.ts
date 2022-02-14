@@ -47,7 +47,7 @@ export class SecondPageComponent implements OnInit {
 
   UserEnum = UserEnum;
 
-  error: boolean = false;
+  error = false;
 
   index: number;
 
