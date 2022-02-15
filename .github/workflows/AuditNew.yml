@@ -1,6 +1,9 @@
-name: Builds
+name: Audit
 on:
   push:
+    branches:
+      - master
+  pull_request:
     branches:
       - master
 
@@ -25,5 +28,5 @@ jobs:
         env:
           CI: true
 
-      - name: Code Linting
+      - name: 'code linting'
         run: npm run lint
